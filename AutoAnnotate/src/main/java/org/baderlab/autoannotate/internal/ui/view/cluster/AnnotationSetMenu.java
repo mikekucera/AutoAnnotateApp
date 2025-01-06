@@ -12,6 +12,7 @@ import org.baderlab.autoannotate.internal.model.AnnotationSet;
 import org.baderlab.autoannotate.internal.task.Grouping;
 import org.baderlab.autoannotate.internal.ui.view.action.AnnotationSetDeleteAction;
 import org.baderlab.autoannotate.internal.ui.view.action.AnnotationSetRenameAction;
+import org.baderlab.autoannotate.internal.ui.view.action.ClusterLabelToTableAction;
 import org.baderlab.autoannotate.internal.ui.view.action.CollapseAction;
 import org.baderlab.autoannotate.internal.ui.view.action.ExportClustersAction;
 import org.baderlab.autoannotate.internal.ui.view.action.RedrawAction;
@@ -47,6 +48,7 @@ public class AnnotationSetMenu {
 	@Inject private Provider<ShowLabelOptionsDialogAction> showLabelOptionsProvider;
 	@Inject private Provider<ShowCreationParamsAction> showCreationParamsProvider;
 	@Inject private Provider<ExportClustersAction> exportClusterProvider;
+	@Inject private Provider<ClusterLabelToTableAction> clusterColumnProvider;
 	@Inject private Provider<ShowCopyAnnotationsDialog> copyActionProvider;
 	@Inject private Provider<CopyAnnotationsEnabler> copyEnablerProvider;
 	@Inject private Provider<CyApplicationManager> applicationManagerProvider;
@@ -71,6 +73,7 @@ public class AnnotationSetMenu {
 		Action redrawAction = redrawActionProvider.get();
 		Action relabelAction = relabelActionProvider.get();
 		Action exportClustersAction = exportClusterProvider.get();
+		Action clusterColumnAction = clusterColumnProvider.get();
 		Action wcWordsAction = wordcloudFactoryProvider.get().createWordsAction();
 		Action wcDelimiterAction = wordcloudFactoryProvider.get().createDelimitersAction();
 		Action showCreationParamsAction = showCreationParamsProvider.get();
@@ -87,6 +90,7 @@ public class AnnotationSetMenu {
 		redrawAction.setEnabled(enabled);
 		relabelAction.setEnabled(enabled);
 		exportClustersAction.setEnabled(enabled);
+		clusterColumnAction.setEnabled(enabled);
 		copyAction.setEnabled(shouldEnableCopyAction());
 		showCreationParamsAction.setEnabled(enabled);
 		showLabelOptionsAction.setEnabled(enabled);
@@ -110,6 +114,7 @@ public class AnnotationSetMenu {
 		menu.add(redrawAction);
 		menu.add(relabelAction);
 		menu.add(exportClustersAction);
+		menu.add(clusterColumnAction);
 		menu.addSeparator();
 		menu.add(wcWordsAction);
 		menu.add(wcDelimiterAction);
